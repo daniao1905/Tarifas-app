@@ -11,7 +11,9 @@ if not vehicles_data:
     st.stop()
 
 vehicle_type = st.selectbox("Selecciona el tipo de vehículo", list(vehicles_data.keys()))
-available_hours = sorted(map(int, vehicles_data[vehicle_type].keys()))
+available_hours = sorted(
+    int(k) for k in vehicles_data[vehicle_type].keys() if k.isdigit()
+)
 selected_hours = st.selectbox("Horas de reserva", available_hours)
 
 if st.button("Calcular tarifa"):
